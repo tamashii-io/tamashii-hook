@@ -21,9 +21,9 @@ module Tamashii
       _hook_container.register(action, event, handler, &block)
     end
 
-    def run(event, *args, &_block)
+    def run(event, *args, &block)
       run_before(event, *args)
-      yield(*args) if block_given?
+      instance_exec(*args, &block) if block_given?
       run_after(event, *args)
     end
 
@@ -38,7 +38,7 @@ module Tamashii
     private
 
     def _hook_container
-      @_hook_container ||= Container.new
+      @_hook_container ||= Container.new(self)
     end
   end
 end

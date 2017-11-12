@@ -4,6 +4,11 @@ module Tamashii
   module Hookable
     # :nodoc:
     class Container < Hash
+      def initialize(instance)
+        super()
+        @instance = instance
+      end
+
       def register(action, name, handler = nil, &block)
         hooks("#{action}_#{name}").push(handler || block)
       end
@@ -11,7 +16,7 @@ module Tamashii
       def execute(name, *args)
         hooks(name).each do |hook|
           next hook.new(*args).process if hook.is_a?(Class)
-          hook.call(*args)
+          @instance.instance_exec(*args, &hook)
         end
       end
 
