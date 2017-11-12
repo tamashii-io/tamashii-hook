@@ -1,8 +1,6 @@
 # Tamashii::Hookable
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/tamashii/hookable`. To experiment with that code, run `bin/console` for an interactive prompt.
-
-TODO: Delete this and the text above, and describe your gem
+Helper for create hook/callback
 
 ## Installation
 
@@ -22,7 +20,50 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+### Hook by block
+
+```ruby
+Tamashii::Hook.after(:config) do |config|
+  config.server = 'wss://tamashii.io'
+end
+
+Tamashii::Hook.run(:config, Config.new)
+```
+
+### Hook by class
+
+```ruby
+class ServerConfig
+  def initialize(config)
+    @config = config
+  end
+
+  def process
+    @config.server = "wss://#{ENV['SERVER_HOST']}"
+  end
+end
+
+Tamashii::after(:config, ServerConfig)
+```
+
+### Hookable
+
+```ruby
+class RFIDComponent
+  include Hookable
+
+  def receive(data)
+    run_before(:received, data)
+    card_id = parse(data).id
+    run_after(:received, card_id)
+  end
+end
+
+component = RFIDComponent.new
+component.after(:received) do |card_id|
+  # ...
+end
+```
 
 ## Development
 
