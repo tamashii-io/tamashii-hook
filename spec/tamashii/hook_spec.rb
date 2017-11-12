@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-RSpec.describe Tamashii::Hook do
+RSpec.describe Tamashii::Hookable do
   it 'has a version number' do
-    expect(Tamashii::Hook::VERSION).not_to be nil
+    expect(Tamashii::Hookable::VERSION).not_to be nil
   end
 end

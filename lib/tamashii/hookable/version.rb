@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Tamashii
-  module Hook
+  module Hookable
     VERSION = '0.1.0'
   end
 end

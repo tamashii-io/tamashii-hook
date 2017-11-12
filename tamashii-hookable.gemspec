@@ -6,7 +6,7 @@ require 'tamashii/hookable/version'
 
 Gem::Specification.new do |spec|
   spec.name          = 'tamashii-hookable'
-  spec.version       = Tamashii::Hook::VERSION
+  spec.version       = Tamashii::Hookable::VERSION
   spec.authors       = ['蒼時弦也']
   spec.email         = ['elct9620@frost.tw']
 
