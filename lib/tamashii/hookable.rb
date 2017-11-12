@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'tamashii/hook/version'
+require 'tamashii/hookable/version'
 
 module Tamashii
   # Tamashii::Hook

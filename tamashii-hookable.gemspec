@@ -2,10 +2,10 @@
 
 lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require 'tamashii/hook/version'
+require 'tamashii/hookable/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'tamashii-hook'
+  spec.name          = 'tamashii-hookable'
   spec.version       = Tamashii::Hook::VERSION
   spec.authors       = ['蒼時弦也']
   spec.email         = ['elct9620@frost.tw']
